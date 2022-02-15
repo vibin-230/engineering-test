@@ -4,13 +4,15 @@ import { Spacing, BorderRadius, FontWeight } from "shared/styles/styles"
 import { Images } from "assets/images"
 import { Colors } from "shared/styles/colors"
 import { Person, PersonHelper } from "shared/models/person"
-import { RollStateSwitcher } from "staff-app/components/roll-state/roll-state-switcher.component"
+import RollStateSwitcher from "staff-app/components/roll-state/roll-state-switcher.component"
+import { RolllStateType } from "shared/models/roll"
 
 interface Props {
   isRollMode?: boolean
   student: Person
+  setRollFunc: (roll_state: RolllStateType, student_id: number, name: string, url: any) => void
 }
-export const StudentListTile: React.FC<Props> = ({ isRollMode, student }) => {
+export const StudentListTile: React.FC<Props> = ({ isRollMode, student, setRollFunc }) => {
   return (
     <S.Container>
       <S.Avatar url={Images.avatar}></S.Avatar>
@@ -19,7 +21,7 @@ export const StudentListTile: React.FC<Props> = ({ isRollMode, student }) => {
       </S.Content>
       {isRollMode && (
         <S.Roll>
-          <RollStateSwitcher />
+          <RollStateSwitcher studentID={student.id} setRollFunc={(state: RolllStateType, id: number) => setRollFunc(state, id, PersonHelper.getFullName(student), Images.avatar)} />
         </S.Roll>
       )}
     </S.Container>

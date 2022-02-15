@@ -4,14 +4,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { RollStateIcon } from "staff-app/components/roll-state/roll-state-icon.component"
 import { Spacing, FontWeight } from "shared/styles/styles"
 import { RolllStateType } from "shared/models/roll"
-
+import { connect, DispatchProp } from "react-redux"
+import { setFilterType } from "../../../shared/redux/action"
 interface Props {
   stateList: StateList[]
   onItemClick?: (type: ItemType) => void
   size?: number
+  dispatch: any
 }
-export const RollStateList: React.FC<Props> = ({ stateList, size = 14, onItemClick }) => {
+const RollStateList: React.FC<Props & DispatchProp> = ({ stateList, size = 14, onItemClick, dispatch }) => {
   const onClick = (type: ItemType) => {
+    dispatch(setFilterType(type))
     if (onItemClick) {
       onItemClick(type)
     }
@@ -39,6 +42,12 @@ export const RollStateList: React.FC<Props> = ({ stateList, size = 14, onItemCli
     </S.ListContainer>
   )
 }
+
+const mapstatetoprops = (state: any) => {
+  return { filterType: state.filterType }
+}
+
+export default connect(mapstatetoprops)(RollStateList)
 
 const S = {
   ListContainer: styled.div`

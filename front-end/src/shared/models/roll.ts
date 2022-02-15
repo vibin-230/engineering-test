@@ -10,3 +10,9 @@ export interface RollInput {
 }
 
 export type RolllStateType = "unmark" | "present" | "absent" | "late"
+
+//added rolltype interface
+export interface RollType {
+  roll_state: RolllStateType
+  student_id: number
+}

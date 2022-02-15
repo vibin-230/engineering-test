@@ -8,6 +8,7 @@ export async function saveActiveRoll(roll: RollInput): Promise<ApiResponse<{}>> 
     const rollsInStorage = get<Roll[]>(LocalStorageKey.rolls)
     const newRollId = rollsInStorage !== undefined ? rollsInStorage[rollsInStorage.length - 1].id + 1 : 1
     const rollsToSave = rollsInStorage !== undefined ? [...rollsInStorage, createRoll(newRollId, roll)] : [createRoll(newRollId, roll)]
+    console.log(rollsToSave)
     add(LocalStorageKey.rolls, rollsToSave)
 
     await httpMock({ randomFailure: true })
@@ -23,6 +24,7 @@ export async function saveActiveRoll(roll: RollInput): Promise<ApiResponse<{}>> 
 }
 
 function createRoll(id: number, input: RollInput) {
+  console.log(input)
   return {
     id,
     name: `Roll ${id}`,

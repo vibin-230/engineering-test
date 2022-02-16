@@ -61,7 +61,6 @@ const HomeBoardPage: React.FC = (props: any) => {
       let x = data?.students.filter((student) => props.roll.findIndex((late: RollType) => late.roll_state === "late" && late.student_id === student.id) > -1)
       props.dispatch(setStudents(x))
     }
-    console.log(props.roll)
   }, [props.filterType])
 
   //search functionality

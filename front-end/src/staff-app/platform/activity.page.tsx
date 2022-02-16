@@ -32,8 +32,7 @@ export const ActivityPage: React.FC = () => {
         <>
           <h1>Activity</h1>
           {activity &&
-            activity.map((a) => {
-              console.log(a)
+            activity.map((a: any) => {
               return (
                 <>
                   <div>
@@ -64,8 +63,11 @@ export const ActivityPage: React.FC = () => {
   )
 }
 
-const RollEntity = ({ data }) => {
-  console.log("insiede roll entiry", data)
+interface Props {
+  data: any
+}
+
+const RollEntity: React.FC<Props> = ({ data }) => {
   return (
     <S.ContainerRollEntity>
       <S.StudentID>{data.student_id}</S.StudentID>

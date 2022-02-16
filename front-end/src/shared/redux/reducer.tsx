@@ -7,7 +7,6 @@ let initialState = {
 }
 
 export default (state = initialState, action: any) => {
-  console.log(action)
   switch (action.type) {
     case SET_STUDENTS:
       return Object.assign({}, state, { students: action.payload })

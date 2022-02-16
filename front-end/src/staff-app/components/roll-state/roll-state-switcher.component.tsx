@@ -16,7 +16,6 @@ const RollStateSwitcher: React.FC<Props> = ({ initialState = "unmark", size = 40
   const dispatchprops = useSelector((props: any) => {
     return { roll: props.roll }
   })
-  console.log(dispatchprops.roll)
 
   useEffect(() => {
     dispatchprops.roll.map((s: any) => {
